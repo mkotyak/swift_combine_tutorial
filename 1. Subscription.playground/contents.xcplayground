@@ -10,9 +10,5 @@
         <page name='receive on'/>
         <page name='subscribe on'/>
         <page name='subscribe on urlsession'/>
-        <page name='subscription pattern'/>
-        <page name='print'/>
-        <page name='handleEvents'/>
-        <page name='breakpoint'/>
     </pages>
 </playground>
