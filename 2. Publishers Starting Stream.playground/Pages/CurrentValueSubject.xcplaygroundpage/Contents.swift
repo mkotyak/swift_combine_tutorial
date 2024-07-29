@@ -4,14 +4,11 @@
 // used like a var with a Publisher stream attached
 
 import Combine
-import Foundation
 
 struct User {
     var id: Int
     var name: String
 }
-
-var cancellables = Set<AnyCancellable>()
 
 let currentUser = CurrentValueSubject<User, Never>(User(id: 1, name: "Bob"))
 let currentUserId = CurrentValueSubject<Int, Never>(1)
@@ -21,13 +18,11 @@ let userNames = CurrentValueSubject<[String], Never>(["Bob", "Susan", "Luise"])
 print("currentUserId: \(currentUserId.value)")
 
 // Subscribe to currentUserId Subject
-currentUserId
-    .sink {
-        print("Completion: \($0)")
-    } receiveValue: { newValue in
-        print("Recieved value: \(newValue)")
-    }
-    .store(in: &cancellables)
+let subscription = currentUserId.sink {
+    print("Completion: \($0)")
+} receiveValue: { newValue in
+    print("Recieved value: \(newValue)")
+}
 
 // Passing down new values to currentUserId Subject
 currentUserId.send(2)
