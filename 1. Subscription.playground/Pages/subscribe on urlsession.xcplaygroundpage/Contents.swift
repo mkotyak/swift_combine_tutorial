@@ -1,19 +1,13 @@
-//: [Previous](@previous)
-
-import Foundation
 import Combine
-import PlaygroundSupport
+import Foundation
 
-PlaygroundPage.current.needsIndefiniteExecution = true
-
-let subscription = URLSession.shared.dataTaskPublisher(for: URL(string: "https://jsonplaceholder.typicode.com")!)
-   .map({ result in
+let subscription = URLSession.shared.dataTaskPublisher(
+    for: URL(string: "https://jsonplaceholder.typicode.com")!
+)
+.map { _ in
     print(Thread.current.isMainThread)
-  })
-    .receive(on: DispatchQueue.main)
-    .sink(receiveCompletion: { _ in }, receiveValue: { value in
-        print(Thread.current.isMainThread)
-    })
-
-
-//: [Next](@next)
+}
+.receive(on: DispatchQueue.main)
+.sink(receiveCompletion: { _ in }, receiveValue: { _ in
+    print(Thread.current.isMainThread)
+})
