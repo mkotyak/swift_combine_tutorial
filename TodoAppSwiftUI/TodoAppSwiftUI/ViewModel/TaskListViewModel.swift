@@ -2,7 +2,8 @@ import Combine
 import Foundation
 
 class TaskListViewModel: ObservableObject {
-    let tasks = CurrentValueSubject<[String], Never>(["buy milk"])
+    @Published var tasks: [String] = ["buy milk"]
+//    let tasks = CurrentValueSubject<[String], Never>(["buy milk"])
     var addNewTask = PassthroughSubject<String, Never>()
     
     var subscriptions = Set<AnyCancellable>()
@@ -14,14 +15,15 @@ class TaskListViewModel: ObservableObject {
                     return
                 }
                 
-                tasks.value.append(newTask)
+                tasks.append(newTask)
+//                tasks.value.append(newTask)
             })
             .store(in: &subscriptions)
         
-        tasks.sink { [weak self] values in
-            print("Tasks were updated to \(values)")
-            self?.objectWillChange.send()
-        }
-        .store(in: &subscriptions)
+//        tasks.sink { [weak self] values in
+//            print("Tasks were updated to \(values)")
+//            self?.objectWillChange.send()
+//        }
+//        .store(in: &subscriptions)
     }
 }

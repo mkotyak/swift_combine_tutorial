@@ -23,7 +23,8 @@ struct TodoListView: View {
 
     private var tasksListView: some View {
         List {
-            ForEach(taskViewModel.tasks.value, id: \.self) { task in
+            ForEach(taskViewModel.tasks, id: \.self) { task in
+//            ForEach(taskViewModel.tasks.value, id: \.self) { task in
                 Text(task)
             }
         }
