@@ -2,9 +2,6 @@ import Combine
 import Foundation
 
 class TaskListViewModel {
-    // replace this with
-    // @Published var tasks = ["buy milk"]
-    
     let tasks = CurrentValueSubject<[String], Never>(["buy milk"])
     var addNewTask = PassthroughSubject<String, Never>()
     
