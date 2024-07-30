@@ -1,5 +1,3 @@
-//: [Previous](@previous)
-
 // Just publish something
 // one-shot and completes normally
 
@@ -8,21 +6,13 @@
 
 // public typealias Failure = Never
 
-
-
-import Foundation
 import Combine
-import PlaygroundSupport
+import Foundation
 
 let justWorld = Just("world!")
 
-
 let subscription = justWorld.sink { cmpletion in
     print("just - completion - \(cmpletion)")
-} receiveValue: { (value) in
+} receiveValue: { value in
     print("just - received value - \(value)")
 }
-
-
-
-//: [Next](@next)
